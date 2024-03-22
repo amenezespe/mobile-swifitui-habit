@@ -7,9 +7,13 @@
 
 import Foundation
 
-enum ProfileUIState {
+enum ProfileUIState: Equatable {
     case none
     case loading
     case success
     case error(String)
+    
+    case updateLoading
+    case updateSuccess
+    case updateError(String)
 }

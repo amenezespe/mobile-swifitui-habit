@@ -57,6 +57,9 @@
 		67BEC8572BAC898B0053CD94 /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67BEC8562BAC898B0053CD94 /* ProfileViewModel.swift */; };
 		67BEC8592BAE0BE90053CD94 /* ProfileResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67BEC8582BAE0BE90053CD94 /* ProfileResponse.swift */; };
 		67BEC85C2BAE134E0053CD94 /* ProfileRemoteDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67BEC85B2BAE134E0053CD94 /* ProfileRemoteDataSource.swift */; };
+		67BEC85E2BAE18730053CD94 /* ProfileInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67BEC85D2BAE18730053CD94 /* ProfileInteractor.swift */; };
+		67BEC8602BAE1A140053CD94 /* ProfileUIState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67BEC85F2BAE1A140053CD94 /* ProfileUIState.swift */; };
+		67BEC8622BAE2DDC0053CD94 /* ProfileRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67BEC8612BAE2DDC0053CD94 /* ProfileRequest.swift */; };
 		67D27A742B938C43001A8578 /* HabitApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67D27A732B938C43001A8578 /* HabitApp.swift */; };
 		67D27A782B938C45001A8578 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 67D27A772B938C45001A8578 /* Assets.xcassets */; };
 		67D27A7B2B938C45001A8578 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 67D27A7A2B938C45001A8578 /* Preview Assets.xcassets */; };
@@ -124,6 +127,9 @@
 		67BEC8562BAC898B0053CD94 /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
 		67BEC8582BAE0BE90053CD94 /* ProfileResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileResponse.swift; sourceTree = "<group>"; };
 		67BEC85B2BAE134E0053CD94 /* ProfileRemoteDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileRemoteDataSource.swift; sourceTree = "<group>"; };
+		67BEC85D2BAE18730053CD94 /* ProfileInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileInteractor.swift; sourceTree = "<group>"; };
+		67BEC85F2BAE1A140053CD94 /* ProfileUIState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileUIState.swift; sourceTree = "<group>"; };
+		67BEC8612BAE2DDC0053CD94 /* ProfileRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileRequest.swift; sourceTree = "<group>"; };
 		67D27A702B938C43001A8578 /* Habit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Habit.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		67D27A732B938C43001A8578 /* HabitApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitApp.swift; sourceTree = "<group>"; };
 		67D27A772B938C45001A8578 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -380,7 +386,9 @@
 		67BEC84F2BAC71E20053CD94 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				67BEC85F2BAE1A140053CD94 /* ProfileUIState.swift */,
 				67BEC8582BAE0BE90053CD94 /* ProfileResponse.swift */,
+				67BEC8612BAE2DDC0053CD94 /* ProfileRequest.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -406,6 +414,7 @@
 			isa = PBXGroup;
 			children = (
 				67BEC85B2BAE134E0053CD94 /* ProfileRemoteDataSource.swift */,
+				67BEC85D2BAE18730053CD94 /* ProfileInteractor.swift */,
 			);
 			path = Interactor;
 			sourceTree = "<group>";
@@ -676,9 +685,12 @@
 				67BEC82D2BAA0FC10053CD94 /* HabitCardViewModel.swift in Sources */,
 				67D27A852B938D52001A8578 /* SplashView.swift in Sources */,
 				67BEC8462BAA7EDA0053CD94 /* HabitValueRequest.swift in Sources */,
+				67BEC8602BAE1A140053CD94 /* ProfileUIState.swift in Sources */,
 				67BEC8552BAC77430053CD94 /* GenderSelectorView.swift in Sources */,
+				67BEC8622BAE2DDC0053CD94 /* ProfileRequest.swift in Sources */,
 				67BEC8282BA924CC0053CD94 /* HabitUiState.swift in Sources */,
 				67BEC81E2BA920980053CD94 /* HomeViewRouter.swift in Sources */,
+				67BEC85E2BAE18730053CD94 /* ProfileInteractor.swift in Sources */,
 				670BA1582B9FDF5C001EA005 /* ErrorResponse.swift in Sources */,
 				67BEC8382BAA3F900053CD94 /* Date+Extension.swift in Sources */,
 				67BEC8262BA9213F0053CD94 /* HabitViewModel.swift in Sources */,
