@@ -9,7 +9,7 @@ import Foundation
 
 
 
-struct ProfileResponse: Encodable {
+struct ProfileResponse: Decodable {
     
     let id: Int
     let fullname: String
@@ -21,6 +21,8 @@ struct ProfileResponse: Encodable {
     
     enum CodingKeys: String, CodingKey {
         //se o nome da variavel for igual ao nome do json nao precisa do : se for diferente coloca nome da var = nome da chave
+        
+        case id
         case fullname = "name"
         case email
         case document

@@ -34,14 +34,14 @@ class ProfileRemoteDataSource {
                         }
                         break
                     case .sucess(let data): //_ forma de dizer ao swifit que nao vou usar a variavel
-                    let decoder = JSONDecoder()
-                    let response = try? decoder.decode(SignInResponse.self, from: data)
-                    //completion(response, nil)
-                    guard let response = response else {
-                        print("Log: Error parser \(String(data:data, encoding: .utf8)!)")
+                        let decoder = JSONDecoder()
+                        let response = try? decoder.decode(ProfileResponse.self, from: data)
+                        //completion(response, nil)
+                        guard let response = response else {
+                            print("Log: Error parser \(String(data:data, encoding: .utf8)!)")
                         return
-                    }
-                    promise(.success(response))
+                        }
+                        promise(.success(response))
                         break
                 }
             }//call
