@@ -47,12 +47,12 @@ enum WebService {
         return URLRequest(url: url)
     }
     
-
+    
     public static func call(path: String,
                             method: Method,
-                             contentType: ContentType,
-                             data: Data?,
-                             completion: @escaping (Result) -> Void) {
+                            contentType: ContentType,
+                            data: Data?,
+                            completion: @escaping (Result) -> Void) {
         
         guard var urlRequest = completUrl(path: path) else { return }
         
@@ -80,17 +80,17 @@ enum WebService {
                     
                     if let r = response as? HTTPURLResponse {
                         switch r.statusCode {
-                            case 400:
-                                completion(.failure(.badRequest, data))
-                                break
-                            case 401:
-                                completion(.failure(.unauthorized, data))
-                                break
-                            case 200:
-                                completion(.sucess(data))
+                        case 400:
+                            completion(.failure(.badRequest, data))
                             break
-                            default:
-                                break
+                        case 401:
+                            completion(.failure(.unauthorized, data))
+                            break
+                        case 200:
+                            completion(.sucess(data))
+                            break
+                        default:
+                            break
                         }
                     }
                     
@@ -98,14 +98,14 @@ enum WebService {
                     print("response\n")
                     print(response)
                     
-                   
+                    
                 }
                 
                 task.resume()
                 
             } //sink
         
-       
+        
     }
     
     
@@ -116,36 +116,47 @@ enum WebService {
     
     public static func call<T: Encodable>(path : String,
                                           method: Method = .get, //forma de passar o valor default .get
-                                           body: T,
-                                           completion: @escaping (Result) -> Void) {
+                                          body: T,
+                                          completion: @escaping (Result) -> Void) {
         guard let jsonData = try? JSONEncoder().encode(body) else { return }
-    
+        
         call(path: path, method: method, contentType: .json, data: jsonData, completion: completion)
         
     }
     
-
+    
+    public static func call(path : String,
+                            method: Method = .get, //forma de passar o valor default .get
+                            completion: @escaping (Result) -> Void) {
+        
+        call(path: path, method: method, contentType: .json, data: nil, completion: completion)
+        
+    }
+    
+    
     public static func call<T: Encodable>(path : EndPoint,
                                           method: Method = .get, //forma de passar o valor default .get
-                                           body: T,
-                                           completion: @escaping (Result) -> Void) {
+                                          body: T,
+                                          completion: @escaping (Result) -> Void) {
         guard let jsonData = try? JSONEncoder().encode(body) else { return }
-    
+        
         call(path: path.rawValue, method: method, contentType: .json, data: jsonData, completion: completion)
         
     }
     
     public static func call (path : EndPoint,
-                                          method: Method = .get, //forma de passar o valor default .get
-                                           completion: @escaping (Result) -> Void) {
-
+                             method: Method = .get, //forma de passar o valor default .get
+                             completion: @escaping (Result) -> Void) {
+        
         call(path: path.rawValue, method: method, contentType: .json, data: nil, completion: completion)
     }
     
+    
+    
     public static func call (path : EndPoint,
                              method: Method = .post, //forma de passar o valor default .post para nao alterar o codigo
-                              params: [URLQueryItem],
-                              completion: @escaping (Result) -> Void) {
+                             params: [URLQueryItem],
+                             completion: @escaping (Result) -> Void) {
         guard var urlRequest = completUrl(path: path.rawValue) else { return }
         guard var absolutUrl = urlRequest.url?.absoluteString else { return }
         var components = URLComponents(string: absolutUrl)

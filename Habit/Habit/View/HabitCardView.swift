@@ -10,18 +10,31 @@ import Combine
 
 struct HabitCardView: View {
     let viewModel: HabitCardViewModel
+    let isChart: Bool
     
     @State private var action = false
     
     
     var body: some View {
         ZStack(alignment: .trailing) {
-            NavigationLink (
-                destination: viewModel.habitDetailView(),
-                isActive: self.$action,
-                label: {
-                    EmptyView()
-                })
+            
+            
+            if isChart { //exibe o de  grafico
+                NavigationLink (
+                    destination: viewModel.chartView(),
+                    isActive: self.$action,
+                    label: {
+                        EmptyView()
+                    })
+            } else { //senao exibe o NL de detalhe
+                NavigationLink (
+                    destination: viewModel.habitDetailView(),
+                    isActive: self.$action,
+                    label: {
+                        EmptyView()
+                    })
+            }
+           
             
             Button(action: {
                 self.action = true
@@ -86,11 +99,12 @@ struct HabitCardView: View {
                 .cornerRadius(4.0)
             })
             
-            Rectangle()
-                .frame(width: 8)
-                .foregroundColor(viewModel.state)
-//                .padding(.top)
-//                .padding(.bottom)
+            if (!isChart) {
+                Rectangle()
+                    .frame(width: 8)
+                    .foregroundColor(viewModel.state)
+            }
+           
             
         
             
@@ -120,8 +134,8 @@ let viewModelHabitCard = HabitCardViewModel(id: 1,
 #Preview {
     NavigationView{
         List{
-            HabitCardView(viewModel: viewModelHabitCard)
-            HabitCardView(viewModel: viewModelHabitCard)
+            HabitCardView(viewModel: viewModelHabitCard, isChart: true)
+            HabitCardView(viewModel: viewModelHabitCard, isChart: false)
         }
         .frame(maxWidth: /*@START_MENU_TOKEN@*/.infinity/*@END_MENU_TOKEN@*/)
         .navigationTitle("Habitos")

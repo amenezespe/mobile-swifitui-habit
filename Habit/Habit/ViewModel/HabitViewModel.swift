@@ -23,12 +23,14 @@ class HabitViewModel: ObservableObject {
     
     private var cancellableRequest: AnyCancellable?
     private let interactor: HabitInteractor
+    let isChart: Bool
     
     private let habitPublisher = PassthroughSubject<Bool, Never>()
     private var cancellableNotify: AnyCancellable?
     
     
-    init(interactor: HabitInteractor) {
+    init(isChart: Bool, interactor: HabitInteractor) {
+        self.isChart = isChart
         self.interactor = interactor
         cancellableNotify = habitPublisher.sink(receiveValue: {saved in
             print("saved", saved)

@@ -11,8 +11,6 @@ struct HabitView: View {
     
     @ObservedObject var viewModel: HabitViewModel
     
-    
-    
     var body: some View {
         ZStack {
             if case HabitUiState.loading = viewModel.uiState {
@@ -23,14 +21,18 @@ struct HabitView: View {
                 NavigationView {
                     ScrollView(showsIndicators: false) {
                         VStack(spacing: 12) {
-                            topContainer
                             
-                            addButton
+                            if (!viewModel.isChart) {
+                                topContainer
+                                
+                                addButton
+                            }
+                           
                             
                             if case HabitUiState.emptyList = viewModel.uiState {
+                                Spacer(minLength: 60)
                                 
                                 VStack {
-                                    Spacer(minLength: 60)
                                     
                                     Image(systemName: "exclamationmark.octagon.fill")
                                         .resizable()
@@ -45,7 +47,9 @@ struct HabitView: View {
                             } else if case HabitUiState.fullList(let rows) = viewModel.uiState {
                                 //LazyVStack deve ser usadno ao inves de lista pq estamos em um componente de scrolling
                                 LazyVStack{
-                                    ForEach(rows, content: HabitCardView.init(viewModel:))
+                                    ForEach(rows) {row in
+                                        HabitCardView.init(viewModel: row, isChart: viewModel.isChart)
+                                    }
                                 } //LazyVStack
                                 .padding(.horizontal, 14)
                                 
@@ -60,8 +64,8 @@ struct HabitView: View {
                                                 },
                                              secondaryButton: .cancel()
                                        )
-                                    }
-                            }
+                                    } //alert
+                            }// else if
                             
                         } //VStack
                        
@@ -140,7 +144,7 @@ extension HabitView {
 }
 
 
-let viewModelHabit = HabitViewModel(interactor: HabitInteractor())
+let viewModelHabit = HabitViewModel(isChart: false, interactor: HabitInteractor())
 
 #Preview {
     HomeViewRouter.makeHabitView(viewModel: viewModelHabit)

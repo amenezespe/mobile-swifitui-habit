@@ -25,7 +25,6 @@ struct HabitCardViewModel: Identifiable, Equatable {
     static func == (lhs: HabitCardViewModel, rhs: HabitCardViewModel) -> Bool {
         return lhs.id == rhs.id
     }
-    
 
 }
 
@@ -34,5 +33,10 @@ extension HabitCardViewModel {
         return HabitDetailViewRouter.makeHabitDetailView(id: id, name: name, label: label, habitPublisher: habitPublisher)
         
     }
+    
+    func chartView() -> some View {
+        return HabitDetailViewRouter.makeChartView(id: id)
+        
     }
+}
    
