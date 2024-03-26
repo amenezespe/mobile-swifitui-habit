@@ -39,9 +39,10 @@ struct HabitCardView: View {
             Button(action: {
                 self.action = true
             },label: {
+                let iconUrl = viewModel.icon.isEmpty ? "https://via.placeholder.com/150" : viewModel.icon
                 
                 HStack{
-                    ImageView(url: "https://via.placeholder.com/150")
+                    ImageView(url: iconUrl)
                         .aspectRatio(contentMode: /*@START_MENU_TOKEN@*/.fill/*@END_MENU_TOKEN@*/)
                         .frame(width: 32, height: 32)
                         .clipped()

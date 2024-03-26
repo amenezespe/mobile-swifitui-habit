@@ -11,10 +11,11 @@ import Combine
 struct ImageView: View {
     
     @State var image: UIImage = UIImage()
-    @ObservedObject var imageLoader: ImageLoader
+    let imageLoader = ImageLoader()
+     let url: String
     
     init(url: String) {
-        imageLoader = ImageLoader(url: url)
+        self.url = url
     }
     var body: some View {
         Image(uiImage: image)
@@ -22,6 +23,13 @@ struct ImageView: View {
             .onReceive(imageLoader.didChange, perform: { data in
                 self.image = UIImage(data: data) ?? UIImage()
             })
+            .onAppear {
+                // somente chama se não houver nenhuma imagem carregada anteriormente
+                if image.cgImage == nil {
+                    // faz a chamada da imagem sempre que esse componente aparecer durante a rolagem
+                    imageLoader.load(url: url)
+                }
+            }
     }
 }
 
@@ -38,20 +46,20 @@ class ImageLoader: ObservableObject {
         }
     }
     
-    init(url: String) {
-        guard let url = URL(string: url) else { return }
-        
-        let task = URLSession.shared.dataTask(with: url) {data, response, error in
-            
-            guard let data = data else { return }
-            DispatchQueue.main.async {
-                print("Data", data)
-                self.data = data
-            }
-        }
-        //para excutar o bloco
-        task.resume()
-    }
+    func load(url: String) {
+          guard let url = URL(string: url) else { return }
+          
+          let task = URLSession.shared.dataTask(with: url) {data, response, error in
+              
+              guard let data = data else { return }
+              DispatchQueue.main.async {
+                  print("Data", data)
+                  self.data = data
+              }
+          }
+          //para excutar o bloco
+          task.resume()
+      }
 }
 
 #Preview {
