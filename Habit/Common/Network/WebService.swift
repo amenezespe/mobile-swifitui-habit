@@ -37,6 +37,12 @@ enum WebService {
         
     }
     
+    enum ContentType : String {
+        case json = "application/json"
+        case formUrl = "application/x-www-form-urlencoded"
+        case multipart = "multipart/form-data"
+    }
+    
     enum Result {
         case sucess(Data)
         case failure(NetworkError, Data?)
@@ -52,6 +58,7 @@ enum WebService {
                             method: Method,
                             contentType: ContentType,
                             data: Data?,
+                            boundary: String = "",
                             completion: @escaping (Result) -> Void) {
         
         guard var urlRequest = completUrl(path: path) else { return }
@@ -65,9 +72,15 @@ enum WebService {
                     urlRequest.setValue("\(userAuth.tokenType) \(userAuth.idToken)", forHTTPHeaderField: "Authorization")
                 }
                 
+                if contentType == .multipart {
+                    urlRequest.setValue("multipart/form-data; boundary=\(boundary)", forHTTPHeaderField: "Content-Type")
+                } else {
+                    urlRequest.setValue(contentType.rawValue, forHTTPHeaderField: "Content-Type")
+                }
+                
                 urlRequest.httpMethod = method.rawValue
                 urlRequest.setValue("application/json", forHTTPHeaderField: "accept")
-                urlRequest.setValue(contentType.rawValue, forHTTPHeaderField: "Content-Type")
+                
                 urlRequest.httpBody = data
                 
                 
@@ -89,6 +102,9 @@ enum WebService {
                         case 200:
                             completion(.sucess(data))
                             break
+                        case 201:
+                            completion(.sucess(data))
+                            break
                         default:
                             break
                         }
@@ -106,12 +122,6 @@ enum WebService {
             } //sink
         
         
-    }
-    
-    
-    enum ContentType : String {
-        case json = "application/json"
-        case formUrl = "application/x-www-form-urlencoded"
     }
     
     public static func call<T: Encodable>(path : String,
@@ -156,18 +166,62 @@ enum WebService {
     public static func call (path : EndPoint,
                              method: Method = .post, //forma de passar o valor default .post para nao alterar o codigo
                              params: [URLQueryItem],
+                             data: Data? = nil,
                              completion: @escaping (Result) -> Void) {
         guard var urlRequest = completUrl(path: path.rawValue) else { return }
         guard var absolutUrl = urlRequest.url?.absoluteString else { return }
         var components = URLComponents(string: absolutUrl)
         components?.queryItems = params
         
+        let boundary = "Boundary-\(NSUUID().uuidString)"
+        let hasData = data != nil
+        
+        let newData = hasData ? createBodyWithparameters(params: params, data: data!, boundary: boundary) : components?.query?.data(using: .utf8)
+        
         call(path: path.rawValue,
              method: method,
-             contentType: .formUrl,
-             data: components?.query?.data(using: .utf8),
+             contentType: hasData ? .multipart : .formUrl,
+             data: newData,
+             boundary: boundary,
              completion: completion)
         
     }
     
+    
+    private static func createBodyWithparameters(params: [URLQueryItem], data: Data, boundary: String) -> Data {
+        let body = NSMutableData()
+        
+        for param in params {
+            body.appendString("--\(boundary)\r\n")
+            body.appendString("Content-Disposition: form-data; name=\"\(param.name)\"\r\n\r\n")
+            body.appendString("\(param.value!)\r\n")
+        }
+        
+        let filename = "img.jpg"
+        let mimeType = "image/jpeg"
+        //imagem
+        body.appendString("--\(boundary)\r\n")
+        body.appendString("Content-Disposition: form-data; name=\"file\"; filename=\"\(filename)\"\r\n")
+        
+        body.appendString("Content-Type: \(mimeType)\r\n\r\n")
+        
+        //anexando o binario da foto
+        body.append(data)
+        
+        body.appendString("\r\n")
+        
+        body.appendString("--\(boundary)--\r\n")
+        
+        //comando para imprimir na console
+        // p print(String(data: body as Data, encoding: .utf8))
+        
+        return body as Data
+        
+    }
+}
+
+extension NSMutableData {
+    func appendString (_ string: String) {
+        append(string.data(using: .utf8, allowLossyConversion: true)!)
+    }
 }

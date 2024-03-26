@@ -151,3 +151,9 @@ class HabitViewModel: ObservableObject {
 //            self.uiState = .error("Falha interna no servidor!")
         }
 }
+
+extension HabitViewModel {
+    func habitCreateView() -> some View {
+        return HabitViewRouter.habitCreateView(habitPublisher: habitPublisher)
+    }
+}
