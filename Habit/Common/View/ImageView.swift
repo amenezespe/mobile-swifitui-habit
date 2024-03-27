@@ -18,7 +18,8 @@ struct ImageView: View {
         self.url = url
     }
     var body: some View {
-        Image(uiImage: image)
+        //UIImage(data: imageLoader.data) ?? image colocamos isso para gerenciar o LAZYVSTack 
+        Image(uiImage: UIImage(data: imageLoader.data) ?? image)
             .resizable()
             .onReceive(imageLoader.didChange, perform: { data in
                 self.image = UIImage(data: data) ?? UIImage()

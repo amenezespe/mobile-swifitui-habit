@@ -73,6 +73,7 @@ class SplashViewModel: ObservableObject {
 extension SplashViewModel {
     
     func signInView () -> some View {
+        
         SplashViewRouter.makeSignView()
     }
     

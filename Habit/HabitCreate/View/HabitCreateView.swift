@@ -47,7 +47,7 @@ struct HabitCreateView: View {
                     ImagePickerView(image: self.$viewModel.image,
                                     imageData: self.$viewModel.imageData,
                                     isPresented: $shouldPresentCamera,
-                                    sourceType: .photoLibrary)
+                                    sourceType: .camera)
                 }
                 
         

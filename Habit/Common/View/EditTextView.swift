@@ -10,10 +10,12 @@ import SwiftUI
 struct EditTextView: View {
     @Binding var text: String
     var placeholder: String = ""
+    var mask: String? = nil
     var keyboard: UIKeyboardType = .default
     var error: String? = nil
     var failure: Bool? = nil
     var isSecure: Bool = false
+    var autocapitalization: UITextAutocapitalizationType = .none
 
     
     
@@ -29,7 +31,17 @@ struct EditTextView: View {
                 TextField(placeholder, text: $text)
                     .foregroundColor(Color("textColor"))
                     .keyboardType(keyboard)
+                    .autocapitalization(autocapitalization)
                     .textFieldStyle(CustomTextFieldStyle())
+                    .onChange(of: text) { value in
+                        //& - passa o valor por referencia para permitir mudar o valor dentro do metodo chamado
+                        //###.###.###-##
+                        
+                        if let mask = mask {
+                            Mask.mask(mask: mask, value: value, text: &text)
+                        }
+                    }
+ 
             }
             
             if let error = error, failure == true, !text.isEmpty {

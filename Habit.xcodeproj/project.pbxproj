@@ -38,6 +38,8 @@
 		67B75E862BB34BD5007EB0EA /* HabitCreateRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67B75E852BB34BD5007EB0EA /* HabitCreateRequest.swift */; };
 		67B75E892BB34C38007EB0EA /* HabitCreateRemoteDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67B75E882BB34C38007EB0EA /* HabitCreateRemoteDataSource.swift */; };
 		67B75E8B2BB34DC1007EB0EA /* HabitCreateInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67B75E8A2BB34DC1007EB0EA /* HabitCreateInteractor.swift */; };
+		67B75E8E2BB37C6E007EB0EA /* Mask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67B75E8D2BB37C6E007EB0EA /* Mask.swift */; };
+		67B75E902BB3A23C007EB0EA /* ProfileEditTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67B75E8F2BB3A23C007EB0EA /* ProfileEditTextView.swift */; };
 		67BEC80C2BA754620053CD94 /* AppError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67BEC80B2BA754620053CD94 /* AppError.swift */; };
 		67BEC80F2BA75C860053CD94 /* SignUpInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67BEC80E2BA75C860053CD94 /* SignUpInteractor.swift */; };
 		67BEC8112BA75D8F0053CD94 /* SignUpRemoteDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67BEC8102BA75D8F0053CD94 /* SignUpRemoteDataSource.swift */; };
@@ -123,6 +125,8 @@
 		67B75E852BB34BD5007EB0EA /* HabitCreateRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitCreateRequest.swift; sourceTree = "<group>"; };
 		67B75E882BB34C38007EB0EA /* HabitCreateRemoteDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitCreateRemoteDataSource.swift; sourceTree = "<group>"; };
 		67B75E8A2BB34DC1007EB0EA /* HabitCreateInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitCreateInteractor.swift; sourceTree = "<group>"; };
+		67B75E8D2BB37C6E007EB0EA /* Mask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mask.swift; sourceTree = "<group>"; };
+		67B75E8F2BB3A23C007EB0EA /* ProfileEditTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileEditTextView.swift; sourceTree = "<group>"; };
 		67BEC80B2BA754620053CD94 /* AppError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppError.swift; sourceTree = "<group>"; };
 		67BEC80E2BA75C860053CD94 /* SignUpInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpInteractor.swift; sourceTree = "<group>"; };
 		67BEC8102BA75D8F0053CD94 /* SignUpRemoteDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpRemoteDataSource.swift; sourceTree = "<group>"; };
@@ -274,6 +278,7 @@
 				6797C7D82B9929A400C0612C /* LoadingButtonView.swift */,
 				67BEC84C2BAA8FA60053CD94 /* ImageView.swift */,
 				67B75E832BB30BFC007EB0EA /* ImagePickerView.swift */,
+				67B75E8F2BB3A23C007EB0EA /* ProfileEditTextView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -355,6 +360,14 @@
 				67B75E8A2BB34DC1007EB0EA /* HabitCreateInteractor.swift */,
 			);
 			path = Interactor;
+			sourceTree = "<group>";
+		};
+		67B75E8C2BB37C5D007EB0EA /* Util */ = {
+			isa = PBXGroup;
+			children = (
+				67B75E8D2BB37C6E007EB0EA /* Mask.swift */,
+			);
+			path = Util;
 			sourceTree = "<group>";
 		};
 		67BEC80D2BA75C6A0053CD94 /* Interactor */ = {
@@ -710,6 +723,7 @@
 		67EABB2A2B95283600CEF1BF /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				67B75E8C2BB37C5D007EB0EA /* Util */,
 				670BA14F2B9A6A62001EA005 /* Network */,
 				6797C7D52B9926D000C0612C /* Lang */,
 				6797C7D22B99153B00C0612C /* Style */,
@@ -885,6 +899,7 @@
 				67BEC8462BAA7EDA0053CD94 /* HabitValueRequest.swift in Sources */,
 				67BEC8602BAE1A140053CD94 /* ProfileUIState.swift in Sources */,
 				67BEC8552BAC77430053CD94 /* GenderSelectorView.swift in Sources */,
+				67B75E902BB3A23C007EB0EA /* ProfileEditTextView.swift in Sources */,
 				67B75E782BB08620007EB0EA /* ChartUIState.swift in Sources */,
 				67BEC8622BAE2DDC0053CD94 /* ProfileRequest.swift in Sources */,
 				67BEC8282BA924CC0053CD94 /* HabitUiState.swift in Sources */,
@@ -893,6 +908,7 @@
 				670BA1582B9FDF5C001EA005 /* ErrorResponse.swift in Sources */,
 				67BEC8382BAA3F900053CD94 /* Date+Extension.swift in Sources */,
 				67BEC8262BA9213F0053CD94 /* HabitViewModel.swift in Sources */,
+				67B75E8E2BB37C6E007EB0EA /* Mask.swift in Sources */,
 				67B75E712BB082BF007EB0EA /* HabitValuesResponse.swift in Sources */,
 				67B75E8B2BB34DC1007EB0EA /* HabitCreateInteractor.swift in Sources */,
 				67BEC84B2BAA81500053CD94 /* HabitDetailInteractor.swift in Sources */,
@@ -1060,6 +1076,7 @@
 				DEVELOPMENT_TEAM = R44BLDX36C;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSCameraUsageDescription = "Upload de foto dos Hábitos";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -1091,6 +1108,7 @@
 				DEVELOPMENT_TEAM = R44BLDX36C;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSCameraUsageDescription = "Upload de foto dos Hábitos";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;

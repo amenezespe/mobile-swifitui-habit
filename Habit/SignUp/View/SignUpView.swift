@@ -91,7 +91,8 @@ extension SignUpView {
                      placeholder: "Nome Completo",
                      keyboard: .alphabet,
                      error: "Nome inválido",
-                     failure: viewModel.fullname.count < 3)
+                     failure: viewModel.fullname.count < 3,
+                     autocapitalization: .words)
     
     }
 }
@@ -100,9 +101,10 @@ extension SignUpView {
     var documentField : some View {
         EditTextView(text: $viewModel.document,
                      placeholder: "Digite CPF",
+                     mask: "###.###.###-##",
                      keyboard: .numberPad,
                      error: "Documento inválido",
-                     failure: viewModel.document.count != 11)
+                     failure: viewModel.document.count != 14)
         
         //TODO: MAsk
         //TODO isDisabled
@@ -113,9 +115,10 @@ extension SignUpView {
     var phoneField : some View {
         EditTextView(text: $viewModel.phone,
                      placeholder: "Digite seu telefone",
+                     mask: "(##) ####-####",
                      keyboard: .namePhonePad,
                      error: "Telefone inválido",
-                     failure: viewModel.phone.count < 10 || viewModel.phone.count >= 12)
+                     failure: viewModel.phone.count < 14 || viewModel.phone.count > 15)
     }
 }
 
@@ -123,7 +126,8 @@ extension SignUpView {
     var birthDayField : some View {
         EditTextView(text: $viewModel.birthday,
                      placeholder: "Entre com usa data de Nascimento",
-                     keyboard: .default,
+                     mask: "##/##/####",
+                     keyboard: .numberPad,
                      error: "Data de Nascimento inválida",
                      failure: viewModel.birthday.count != 10)
     }
@@ -152,8 +156,8 @@ extension SignUpView {
                           disabled: !viewModel.email.isEmail() ||
                           viewModel.password.isEmpty ||
                           viewModel.fullname.count < 3 ||
-                          viewModel.document.count != 11 ||
-                          viewModel.phone.count < 10 || viewModel.phone.count >= 12 ||
+                          viewModel.document.count != 14 ||
+                          viewModel.phone.count < 14 || viewModel.phone.count > 15 ||
                           viewModel.birthday.count != 10  )
     }
 }

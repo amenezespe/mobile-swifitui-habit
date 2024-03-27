@@ -116,7 +116,7 @@ class PhoneValidation: ObservableObject {
     
     var value: String = "11912341234" {
         didSet {
-            failure = value.count < 10 || value.count >= 12
+            failure = value.count < 14 || value.count >= 15
         } //didSet
     } //value
     

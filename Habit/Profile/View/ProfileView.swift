@@ -53,7 +53,7 @@ struct ProfileView: View {
                                 
                                 HStack {
                                     Text("CPF")
-                                    Spacer()
+                                    Spacer()                            
                                     TextField("", text: $viewModel.document)
                                         .disabled(true)
                                         .foregroundColor(.gray)
@@ -63,9 +63,13 @@ struct ProfileView: View {
                                 HStack {
                                     Text("Número de celular")
                                     Spacer()
-                                    TextField("Digite o Celular", text: $viewModel.phoneValidation.value)
-                                        .keyboardType(.numberPad)
-                                        .multilineTextAlignment(.trailing)
+                                    ProfileEditTextView(text: $viewModel.phoneValidation.value,
+                                                 placeholder: "Digite seu telefone",
+                                                 mask: "(##) ####-####",
+                                                 keyboard: .namePhonePad)
+//                                    TextField("Digite o Celular", text: $viewModel.phoneValidation.value)
+//                                        .keyboardType(.numberPad)
+//                                        .multilineTextAlignment(.trailing)
                                 } //HStack
                                 
                                 if (viewModel.phoneValidation.failure) {
@@ -76,8 +80,13 @@ struct ProfileView: View {
                                 HStack {
                                     Text("Data de Nascimento")
                                     Spacer()
-                                    TextField("Digite a Data de Nascimento", text: $viewModel.birthdayValidation.value)
-                                        .multilineTextAlignment(.trailing)
+                                    ProfileEditTextView(text: $viewModel.birthdayValidation.value,
+                                                 placeholder: "Digite a Data de Nascimento",
+                                                 mask: "##/##/####",
+                                                 keyboard: .numberPad)
+                                    
+//                                    TextField("Digite a Data de Nascimento", text: $viewModel.birthdayValidation.value)
+//                                        .multilineTextAlignment(.trailing)
                                 } //HStack
                                 
                                 

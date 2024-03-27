@@ -140,7 +140,7 @@ extension SignInView {
 }
 
 
-let viewModel1 = SignInViewModel(interactor: SignInInteractor())
+let viewModel1 = SignInViewModel(interactor: SignInInteractor(), homeViewModel: HomeViewModel())
 #Preview {
     SignInView(viewModel: viewModel1)
 }
